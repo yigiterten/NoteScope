@@ -46,4 +46,9 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python scripts/check_setup.py
+
+# point to the folder with the downloaded Community Notes TSV files (default: ~/Desktop/Thesis/Community Notes)
+export NOTESCOPE_DATA_DIR="/path/to/Community Notes"
+python scripts/load_data.py
+python scripts/run_sql.py sql/01_overview.sql
 ```
