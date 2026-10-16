@@ -22,6 +22,13 @@ _To be added after Session 4._
 ## Limitations
 _To be added after Session 4._
 
+## Data availability and terms
+- **Source:** the public Community Notes data from X's "Download data" page (notes, note status history, user enrollment). It is used under the X Developer Agreement and Policy.
+- **No raw data in this repo.** Note texts and the raw or processed tables are not published here (see `.gitignore`). To reproduce the analysis, download the files yourself from the page above and point the scripts to your local data folder.
+- **Aggregate analysis only.** Results are reported in aggregate. Participant IDs are pseudonymous and are not used to profile individuals.
+- **Purpose:** non-commercial research linked to an MSc thesis (UCD, Social Data Science). The project studies the socio-technical dynamics of crowd-sourced verification (consensus and bridging patterns in Community Notes). It does not aim to detect or benchmark rule violations on X.
+- **Example notes:** if note texts are shown in reports, they are few, unmodified and attributed as X's display requirements ask.
+
 ## Project structure
 ```
 data/raw/        downloaded source files (not tracked by git)

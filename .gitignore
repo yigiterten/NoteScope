@@ -14,3 +14,10 @@ data/processed/*
 
 # macOS
 .DS_Store
+
+# Community Notes data must never be committed (raw or derived)
+*.tsv
+*.csv
+*.zip
+*.parquet
+*.db
