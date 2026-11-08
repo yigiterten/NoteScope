@@ -61,6 +61,31 @@ ax.legend(title="Author group")
 fig.tight_layout()
 fig.savefig(OUT / "notes_per_month.png", dpi=150)
 
+# Figure 3 (needs the note_ratings table from scripts/load_ratings.py): median ratings per note by month
+has_ratings = con.sql("SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'note_ratings'").fetchone()[0]
+if has_ratings:
+    rated = con.sql("""
+        SELECT date_trunc('month', f.created_at) AS month, f.author_group,
+               median(COALESCE(r.n_ratings, 0)) AS median_ratings
+        FROM note_facts f
+        LEFT JOIN note_ratings r ON r.note_id = f.note_id
+        WHERE f.created_ms >= (SELECT MIN(created_ms) FROM note_facts WHERE author_group = 'AI')
+        GROUP BY month, f.author_group
+        ORDER BY month, f.author_group
+    """).df()
+    fig, ax = plt.subplots(figsize=(9, 4.5))
+    for group, df in rated.groupby("author_group"):
+        ax.plot(df["month"], df["median_ratings"], marker="o", label=group, color=COLORS[group])
+    ax.set_title("Median number of ratings per note, by month the note was written")
+    ax.set_ylabel("Median ratings per note")
+    ax.set_ylim(bottom=0)
+    ax.grid(alpha=0.3)
+    ax.legend(title="Author group")
+    fig.text(0.01, 0.01, "Notes of the same month have had the same time to collect ratings. The latest month is incomplete.",
+             fontsize=7, color="gray")
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    fig.savefig(OUT / "ratings_per_note_by_month.png", dpi=150)
+
 print("Saved:")
 for p in sorted(OUT.glob("*.png")):
     print(" ", p.relative_to(REPO_ROOT))
