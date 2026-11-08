@@ -62,7 +62,7 @@ data/raw/        downloaded source files (not tracked by git)
 data/processed/  DuckDB database and cleaned tables (not tracked)
 sql/             SQL queries
 src/notescope/   reusable Python code
-notebooks/       exploration
+notebooks/       01_notescope_analysis.ipynb: the full analysis with charts (run top to bottom)
 reports/figures/ charts used in the README
 scripts/         load_data.py, load_ratings.py, run_sql.py, make_figures.py, check_setup.py
 ```
