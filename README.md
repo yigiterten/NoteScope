@@ -46,7 +46,7 @@ Queries: `sql/01_overview.sql` to `sql/07_ratings_quality.sql`. Figures: `python
 - **Recent months are immature.** Newer notes have had less time to collect ratings, so the latest months look lower for both groups.
 - **Timing covers decided notes only.** Hours to first non-"Needs More Ratings" status exist only for notes that left that state.
 - **Incomplete joins.** 13% of status records have no row in the notes files (likely deleted notes), and 5% of status records come from authors missing in the enrollment file. The latter are counted as "Other".
-- **Ratings summary.** Rating counts include every rating row. For about 1% of AI notes and 3% of other notes the count is clearly above the number of distinct raters (people changing their rating). The distinct-rater count is approximate (HyperLogLog). Medians are almost identical for both measures. 2.7% of rated notes have no status record and are left out.
+- **Ratings summary.** Rating counts include every rating row. For about 1% of AI notes and 3% of other notes the rating count is clearly above the approximate number of distinct raters. A check on notes written since Feb 2026 found no repeated (rater, note) pairs, so this is most likely the error of the approximate distinct count (HyperLogLog) on notes with many ratings, not people changing their rating. Medians are identical for both measures. 2.7% of rated notes have no status record and are left out.
 - **Data lag.** The public files are daily snapshots published with a delay of about 48 hours.
 
 ## Data availability and terms
